@@ -30,7 +30,7 @@ export default function handler(
     })
     .catch((error) => {
       console.log("error", error);
-      res.status(200).json({ name: error });
+      res.status(200).json(error);
     });
 
   try {
@@ -52,7 +52,6 @@ export default function handler(
 
     // const raw =
     //   '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly123"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
-
     const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${currentTime}",\r\n                    "value": "${body.butterfly}"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
 
     let requestOptions = {
@@ -69,11 +68,11 @@ export default function handler(
     )
       .then((response) => response.json())
       .then((data) => {
-        res.status(200).json({ name: data });
+        res.status(200).json(data);
       })
       .catch((error) => {
         console.log("error", error);
-        res.status(200).json({ name: error });
+        res.status(200).json(error);
       });
   } catch (e) {
     res.status(200).json({ name: "fail:" + e });
