@@ -24,7 +24,7 @@ export default function handler(
 ) {
   try {
     const body = req.body;
-    res.status(200).json(body);
+    res.status(200).json({ name: JSON.parse(body).butterfly });
     const myHeaders = new Headers();
     myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
     myHeaders.append("Content-Type", "text/plain");
