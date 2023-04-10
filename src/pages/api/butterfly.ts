@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import dayjs from "dayjs";
 
 type Data = {
   name: string;
@@ -9,8 +10,15 @@ const myHeaders = new Headers();
 myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
 myHeaders.append("Content-Type", "text/plain");
 
-const raw =
-  '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
+const date = dayjs().format();
+const butterfly_type = "hello";
+
+// const raw =
+//   '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
+
+const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
+  "YYYY-MM-DDTHH:mm:ss"
+)}",\r\n                    "value": "${butterfly_type}"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
 
 const requestOptions = {
   method: "POST",
