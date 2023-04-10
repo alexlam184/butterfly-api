@@ -27,9 +27,18 @@ export default function handler(
   myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
 
   try {
-    const body: string = req.body;
-    const test = JSON.parse(body.toString());
-    res.status(200).json({ name: test });
+    const body = req.body;
+    let obj = null;
+    try {
+      obj = JSON.parse(body);
+    } catch (e) {
+      obj = {
+        butterfly: "p5js",
+        deviceID: "161110960",
+        apiKey: "1EiJMNxAFieGuubW=TiRVN1kYGA=",
+      };
+      res.status(200).json({ name: "not working" + e });
+    }
 
     const raw =
       '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
@@ -40,7 +49,7 @@ export default function handler(
     //   body.butterfly + "what"
     // }"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
 
-    const requestOptions = {
+    let requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
