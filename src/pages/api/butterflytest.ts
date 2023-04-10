@@ -23,7 +23,7 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   try {
-    //const body: RequestBodyType = JSON.parse(req.body)
+    const body: RequestBodyType = JSON.parse(req.body);
     const myHeaders = new Headers();
     myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
     myHeaders.append("Content-Type", "text/plain");
