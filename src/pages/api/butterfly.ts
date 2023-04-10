@@ -63,7 +63,7 @@ export default function handler(
     };
 
     fetch(
-      `http://api.onenet.hk.chinamobile.com/${body.deviceID}/161110960/datapoints`,
+      `http://api.onenet.hk.chinamobile.com/devices/${body.deviceID}/datapoints`,
       // @ts-ignore
       requestOptions
     )
