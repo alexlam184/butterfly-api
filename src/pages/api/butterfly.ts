@@ -26,8 +26,6 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   const body: RequestBodyType = JSON.parse(req.body);
-  res.status(200).json({ name: "success" });
-
   const myHeaders = new Headers();
   myHeaders.append("api-key", body.apiKey);
   myHeaders.append("Content-Type", "text/plain");
