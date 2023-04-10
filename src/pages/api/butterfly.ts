@@ -10,50 +10,49 @@ type Data = {
   name: string;
 };
 
-const myHeaders = new Headers();
-myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
-myHeaders.append("Content-Type", "text/plain");
+type RequestBodyType = {
+  butterfly: string;
+  deviceID: string;
+  apiKey: string;
+};
 
 const date = dayjs().format();
-const butterfly_type = "hello";
 
 // const raw =
 //   '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
-
-const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
-  "YYYY-MM-DDTHH:mm:ss"
-)}",\r\n                    "value": "${butterfly_type}"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
-
-const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow",
-};
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  //res.status(200).json({ name: 'Lion Rock222' });
+  const body: RequestBodyType = JSON.parse(req.body);
+  //   res.status(200).json({ name: body });
 
-  //   if (req.method === "POST") {
-  //     // Process a POST request
-  //     res.status(200).json({ name: "POST butterfly" });
-  //   } else {
-  //     // Handle any other HTTP method
-  //     res.status(200).json({ name: "GET butterfly" });
-  //   }
+  const myHeaders = new Headers();
+  myHeaders.append("api-key", body.apiKey);
+  myHeaders.append("Content-Type", "text/plain");
+
+  const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
+    "YYYY-MM-DDTHH:mm:ss"
+  )}",\r\n                    "value": "${
+    body.butterfly
+  }"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
 
   fetch(
-    "http://api.onenet.hk.chinamobile.com/devices/161110960/datapoints",
+    `http://api.onenet.hk.chinamobile.com/devices/${body.deviceID}/datapoints`,
     // @ts-ignore
     requestOptions
   )
-    .then((response) => response.text())
-    .then((result) => {
-      console.log(result);
-      res.status(200).json({ name: result });
+    .then((response) => response.json())
+    .then((data) => {
+      res.status(200).json({ name: data });
     })
     .catch((error) => {
       console.log("error", error);
