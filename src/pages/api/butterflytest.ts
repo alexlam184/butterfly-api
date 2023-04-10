@@ -22,12 +22,14 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "text/plain");
+  myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
+
   try {
-    const body = req.body;
-    res.status(200).json({ name: JSON.parse(body).butterfly });
-    const myHeaders = new Headers();
-    myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
-    myHeaders.append("Content-Type", "text/plain");
+    const body: string = req.body;
+    const test = JSON.parse(body.toString());
+    res.status(200).json({ name: test });
 
     const raw =
       '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
