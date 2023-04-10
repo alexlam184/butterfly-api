@@ -33,21 +33,20 @@ export default function handler(
       obj = JSON.parse(body);
     } catch (e) {
       obj = {
-        butterfly: "p5js",
+        butterfly: "default",
         deviceID: "161110960",
         apiKey: "1EiJMNxAFieGuubW=TiRVN1kYGA=",
       };
-      res.status(200).json({ name: "not working" + e });
     }
 
-    const raw =
-      '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
+    // const raw =
+    //   '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly123"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
 
-    // const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
-    //   "YYYY-MM-DDTHH:mm:ss"
-    // )}",\r\n                    "value": "${
-    //   body.butterfly + "what"
-    // }"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
+    const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
+      "YYYY-MM-DDTHH:mm:ss"
+    )}",\r\n                    "value": "${
+      body.butterfly + "what"
+    }"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
 
     let requestOptions = {
       method: "POST",
