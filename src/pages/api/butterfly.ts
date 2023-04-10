@@ -33,13 +33,13 @@ export default function handler(
 ) {
   //res.status(200).json({ name: 'Lion Rock222' });
 
-  if (req.method === "POST") {
-    // Process a POST request
-    res.status(200).json({ name: "POST butterfly" });
-  } else {
-    // Handle any other HTTP method
-    res.status(200).json({ name: "GET butterfly" });
-  }
+  //   if (req.method === "POST") {
+  //     // Process a POST request
+  //     res.status(200).json({ name: "POST butterfly" });
+  //   } else {
+  //     // Handle any other HTTP method
+  //     res.status(200).json({ name: "GET butterfly" });
+  //   }
 
   fetch(
     "http://api.onenet.hk.chinamobile.com/devices/161110960/datapoints",
