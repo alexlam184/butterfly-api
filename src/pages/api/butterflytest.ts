@@ -45,7 +45,7 @@ export default function handler(
     const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
       "YYYY-MM-DDTHH:mm:ss"
     )}",\r\n                    "value": "${
-      body.butterfly + "what"
+      body.butterfly
     }"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
 
     let requestOptions = {
