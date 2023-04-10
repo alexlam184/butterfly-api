@@ -1,6 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+// import utc from "dayjs/plugin/utc";
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Hong_Kong");
 
 type Data = {
   name: string;
