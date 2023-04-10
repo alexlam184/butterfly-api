@@ -27,15 +27,18 @@ export default function handler(
 ) {
   const body: RequestBodyType = JSON.parse(req.body);
   const myHeaders = new Headers();
-  myHeaders.append("api-key", body.apiKey);
+  //   myHeaders.append("api-key", body.apiKey);
+  myHeaders.append("api-key", "1EiJMNxAFieGuubW=TiRVN1kYGA=");
   myHeaders.append("Content-Type", "text/plain");
 
-  const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
-    "YYYY-MM-DDTHH:mm:ss"
-  )}",\r\n                    "value": "${
-    body.butterfly + "what"
-  }"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
+  //   const raw = `{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "${dayjs().format(
+  //     "YYYY-MM-DDTHH:mm:ss"
+  //   )}",\r\n                    "value": "${
+  //     body.butterfly + "what"
+  //   }"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}`;
 
+  const raw =
+    '{\r\n    "datastreams": [{\r\n            "id": "butterfly",\r\n            "datapoints": [{\r\n                    "at": "2023-04-10T14:46:53",\r\n                    "value": "The latest butterfly"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}';
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
@@ -43,8 +46,13 @@ export default function handler(
     redirect: "follow",
   };
 
+  //   fetch(
+  //     `http://api.onenet.hk.chinamobile.com/devices/${body.deviceID}/datapoints`,
+  //     // @ts-ignore
+  //     requestOptions
+  //   )
   fetch(
-    `http://api.onenet.hk.chinamobile.com/devices/${body.deviceID}/datapoints`,
+    `http://api.onenet.hk.chinamobile.com/devices/161110960/datapoints`,
     // @ts-ignore
     requestOptions
   )
